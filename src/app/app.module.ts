@@ -6,7 +6,7 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { environment } from '../environments/environment';
 import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { FormsModule, Validators } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { CustomFormsModule } from 'ng2-validation';
 
 import { AppComponent } from './app.component';
@@ -46,7 +46,6 @@ import { ProductService } from './product.service';
   imports: [
     BrowserModule,
     FormsModule,
-    Validators,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
@@ -72,14 +71,20 @@ import { ProductService } from './product.service';
         component: OrdersComponent,
         canActivate: [AuthGuardService]
       },
-      {
-        path: 'admin/products',
-        component: AdminProductsComponent,
-        canActivate: [AuthGuardService, AdminAuthGuardService]
-      },
+
       {
         path: 'admin/products/new',
         component: ProductFormComponent,
+        canActivate: [AuthGuardService, AdminAuthGuardService]
+      },
+      {
+        path: 'admin/products/:id',
+        component: ProductFormComponent,
+        canActivate: [AuthGuardService, AdminAuthGuardService]
+      },
+      {
+        path: 'admin/products',
+        component: AdminProductsComponent,
         canActivate: [AuthGuardService, AdminAuthGuardService]
       },
       {
