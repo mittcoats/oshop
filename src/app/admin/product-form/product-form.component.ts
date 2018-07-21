@@ -3,6 +3,7 @@ import { CategoryService } from '../../category.service';
 import { ProductService } from '../../product.service';
 import { Router, ActivatedRoute } from '../../../../node_modules/@angular/router';
 import 'rxjs/add/operator/take';
+import { Product } from '../../models/product';
 
 @Component({
   selector: 'app-product-form',
@@ -11,11 +12,11 @@ import 'rxjs/add/operator/take';
 })
 export class ProductFormComponent implements OnInit {
   categories$;
-  product = {};
+  product: Product;
   id;
 
   constructor(
-    private categoryService: CategoryService,
+    categoryService: CategoryService,
     private productService: ProductService,
     private router: Router,
     private route: ActivatedRoute
@@ -41,5 +42,12 @@ export class ProductFormComponent implements OnInit {
     this.router.navigate(['/admin/products']);
 
     console.log('product saved', product);
+  }
+
+  delete() {
+    if (!confirm('Sure you want to delete?')) { return; }
+
+    this.productService.delete(this.id);
+    this.router.navigate(['/admin/products']);
   }
 }

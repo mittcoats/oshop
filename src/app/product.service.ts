@@ -22,6 +22,10 @@ export class ProductService {
 
   update(productId, product) {
     // firebase doesn't permit ids to be updated; can't use product.id
-    this.db.object('/products/' + productId).update(product);
+    return this.db.object('/products/' + productId).update(product);
+  }
+
+  delete(productId) {
+    return this.db.object('/products/' + productId).remove();
   }
 }
