@@ -14,7 +14,7 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { HomeComponent } from './home/home.component';
 import { ProductsComponent } from './products/products.component';
-import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
+import { CartComponent } from './cart/cart.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { OrderSuccessComponent } from './order-success/order-success.component';
 import { OrdersComponent } from './orders/orders.component';
@@ -30,7 +30,7 @@ import { CategoryService } from './category.service';
 import { ProductService } from './product.service';
 import { ProductFilterComponent } from './products/product-filter/product-filter.component';
 import { ProductCardComponent } from './product-card/product-card.component';
-import { ShoppingCartService } from './shopping-cart.service';
+import { CartService } from './cart.service';
 
 @NgModule({
   declarations: [
@@ -38,7 +38,7 @@ import { ShoppingCartService } from './shopping-cart.service';
     NavbarComponent,
     HomeComponent,
     ProductsComponent,
-    ShoppingCartComponent,
+    CartComponent,
     CheckoutComponent,
     OrderSuccessComponent,
     OrdersComponent,
@@ -61,7 +61,7 @@ import { ShoppingCartService } from './shopping-cart.service';
     RouterModule.forRoot([
       { path: '', component: ProductsComponent },
       { path: 'products', component: ProductsComponent },
-      { path: 'shopping-cart', component: ShoppingCartComponent },
+      { path: 'cart', component: CartComponent },
       { path: 'login', component: LoginComponent },
       {
         path: 'checkout',
@@ -108,7 +108,7 @@ import { ShoppingCartService } from './shopping-cart.service';
     UserService,
     CategoryService,
     ProductService,
-    ShoppingCartService
+    CartService
   ],
   bootstrap: [AppComponent]
 })
