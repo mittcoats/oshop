@@ -1,11 +1,18 @@
 import { CartItem } from "./cart-item";
+import { Product } from "./product";
 
 export class Cart {
+  items: CartItem[] = []
 
   constructor(
-    public items: CartItem[]
-  ) {}
-
+    public itemsMap: { [productId: string]: CartItem }
+  ) {
+    for (let productId in itemsMap) {
+      let item = itemsMap[productId]
+      this.items.push(new CartItem(item.product, item.quantity))
+    }
+  }
+  
   get itemCount() {
     let count = 0 
       for (let productId in this.items) {
@@ -13,4 +20,19 @@ export class Cart {
       }
     return count;
   }
+
+  get totalPrice() {
+    let sum = 0;
+    for(let id in this.items){
+      sum += this.items[id].totalPrice;
+    }
+    return sum
+  }
+
+  getQuantity(product: Product) {
+    let item = this.itemsMap[product.$key]
+    return item ? item.quantity : 0;
+  }
+
+
 }
