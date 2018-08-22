@@ -12,9 +12,11 @@
     </thead>
     <tbody>
       <tr *ngFor="let item of cart.items">
-        <td>{{ item.product.title }}</td>
-        <td>{{ item.product.price | currency:'USD' }}</td>
-        <td>{{ item.quantity }}</td>
+        <td>{{ item.title }}</td>
+        <td>{{ item.price | currency:'USD' }}</td>
+        <td>
+          <product-quantity [product]="item" [cart]="cart"></product-quantity>
+        </td>
         <td>{{ item.totalPrice | currency:'USD' }}</td>
       </tr>
     </tbody>
