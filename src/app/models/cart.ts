@@ -8,13 +8,10 @@ export class Cart {
     public itemsMap: { [productId: string]: CartItem }
   ) {
     this.itemsMap = itemsMap || {};
-    
+
     for (let productId in itemsMap) {
       let item = itemsMap[productId]
-      let x = new CartItem()
-      Object.assign(x, item)
-      x.$key = productId
-      this.items.push(x)
+      this.items.push(new CartItem({...item, $key: productId }))
     }
   }
   
