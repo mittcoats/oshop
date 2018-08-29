@@ -4,6 +4,7 @@ import { Cart } from '../models/cart';
 import { CartService } from '../cart.service';
 import { OrderService } from '../order.service';
 import { AuthService } from '../auth.service';
+import { Order } from '../models/order';
 
 @Component({
   selector: 'app-checkout',
@@ -22,6 +23,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   userSub: Subscription;
   cart: Cart;
   userId: string;
+  order: Order;
 
   constructor(
     private authService: AuthService,
@@ -41,25 +43,8 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   }
 
   placeOrder() {
-    let order = {
-      userId: this.userId,
-      time: new Date().getTime(),
-      shipping: this.shipping,
-      items: this.cart.items.map(i => {
-        return {
-          product: {
-            title: i.title,
-            imageUrl: i.imageUrl,
-            price: i.price
-          },
-          quantity: i.quantity,
-          totalPrice: i.totalPrice
-        }
-      })
-    }
-    console.log(order);
+    let order = new Order(this.cart, this.shipping, this.userId)
     this.orderService.saveOrder(order);
-  }
-  
+  } 
 
 }
