@@ -1,18 +1,14 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Subscription } from '../../../node_modules/rxjs/Subscription';
+import { Component, OnInit } from '@angular/core';
 import { Cart } from '../models/cart';
 import { CartService } from '../cart.service';
-import { OrderService } from '../order.service';
-import { AuthService } from '../auth.service';
-import { Order } from '../models/order';
-import { Router } from '../../../node_modules/@angular/router';
+import { Observable } from '../../../node_modules/rxjs/Observable';
 
 @Component({
-  selector: 'app-checkout',
+  selector: 'checkout',
   templateUrl: './checkout.component.html',
   styleUrls: ['./checkout.component.css']
 })
-export class CheckoutComponent implements OnInit, OnDestroy {
+export class CheckoutComponent implements OnInit {
   states = ['AL', 'AK', 'AS', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'DC', 'FM',
     'FL', 'GA', 'GU', 'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA',
     'ME', 'MH', 'MD', 'MA', 'MI', 'MN', 'MS', 'MO', 'MT', 'NE', 'NV',
@@ -20,34 +16,13 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     'PA', 'PR', 'RI', 'SC', 'SD', 'TN', 'TX', 'UT', 'VT', 'VI', 'VA',
     'WA', 'WV', 'WI', 'WY', 'AE', 'AA', 'AP'];
   shipping = {}
-  cartSub: Subscription;
-  userSub: Subscription;
-  cart: Cart;
-  userId: string;
-  order: Order;
+  cart$: Observable<Cart>;
 
   constructor(
-    private authService: AuthService,
     private cartService: CartService,
-    private orderService: OrderService,
-    private router: Router
   ) { }
 
   async ngOnInit() {
-    let cart$ = await this.cartService.getCart();
-    this.cartSub = cart$.subscribe(cart => this.cart = cart)
-    this.userSub = this.authService.user$.subscribe(user => this.userId = user.uid);
+    this.cart$ = await this.cartService.getCart();
   }
-
-  ngOnDestroy() {
-    this.cartSub.unsubscribe();
-    this.userSub.unsubscribe();
-  }
-
-  async placeOrder() {
-    let order = new Order(this.cart, this.shipping, this.userId)
-    let orderSaved = await this.orderService.saveOrder(order);
-    this.router.navigate(['/order-success', orderSaved.key]);
-  }
-
 }
