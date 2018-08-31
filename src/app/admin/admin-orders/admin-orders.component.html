@@ -1,3 +1,24 @@
-<p>
-  admin-orders works!
-</p>
+<h1>All Shop Orders</h1>
+<ng-container *ngIf="orders$ | async as orders">
+  <p>
+    You have {{ orders.length }} items in your cart.
+  </p>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Customer</th>
+        <th>Date</th>
+        <th>View</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let order of orders">
+        <td>{{ order.userId }}</td>
+        <td>{{ order.time | date:'medium' }}</td>
+        <td>
+          <a href="">View</a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</ng-container>
