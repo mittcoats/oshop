@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { AuthService } from '../auth.service';
-import { AppUser } from '../models/app-user';
-import { CartService } from '../cart.service';
-import { Cart } from '../models/cart';
+import { AuthService } from 'shared/services/auth.service';
+import { AppUser } from 'shared/models/app-user';
+import { CartService } from 'shared/services/cart.service';
+import { Cart } from 'shared/models/cart';
 
 @Component({
   selector: 'app-navbar',
