@@ -1,4 +1,4 @@
-import { Cart } from "./cart";
+import { Cart } from "shared/models/cart";
 
 export class Order {
   time: number;

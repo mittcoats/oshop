@@ -1,5 +1,5 @@
-import { CartItem } from "./cart-item";
-import { Product } from "./product";
+import { CartItem } from "shared/models/cart-item";
+import { Product } from "shared/models/product";
 
 export class Cart {
   items: CartItem[] = []
