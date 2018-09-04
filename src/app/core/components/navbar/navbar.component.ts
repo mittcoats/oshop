@@ -17,9 +17,7 @@ export class NavbarComponent implements OnInit {
   constructor(
     private auth: AuthService,
     private cartService: CartService
-  ) {
-    
-  }
+  ) {  }
 
   async ngOnInit() {
     this.auth.appUser$.subscribe(appUser => this.appUser = appUser);
