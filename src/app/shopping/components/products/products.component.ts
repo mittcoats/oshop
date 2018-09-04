@@ -4,8 +4,8 @@ import { ActivatedRoute } from '@angular/router';
 import { Product } from 'shared/models/product';
 import 'rxjs/add/operator/switchMap';
 import { CartService } from 'shared/services/cart.service';
-import { Observable } from '../../../node_modules/rxjs/Observable';
 import { Cart } from 'shared/models/cart';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app-products',

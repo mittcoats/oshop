@@ -9,44 +9,30 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { environment } from 'environments/environment';
 import { CustomFormsModule } from 'ng2-validation';
-import { AuthGuardService } from 'shared/services/auth-guard.service';
 import { SharedModule } from 'shared/shared.module';
 
+import { AdminModule } from './admin/admin.module';
+import { AdminAuthGuardService } from './admin/services/admin-auth-guard.service';
 import { AppComponent } from './app.component';
-import { CartSummaryComponent } from './cart-summary/cart-summary.component';
-import { CartComponent } from './cart/cart.component';
-import { CheckoutComponent } from './checkout/checkout.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import { OrderSuccessComponent } from './order-success/order-success.component';
-import { OrdersComponent } from './orders/orders.component';
-import { ProductFilterComponent } from './products/product-filter/product-filter.component';
-import { ProductsComponent } from './products/products.component';
-import { ShippingFormComponent } from './shipping-form/shipping-form.component';
-import { AdminAuthGuardService } from './admin/services/admin-auth-guard.service';
-import { AdminModule } from './admin/admin.module';
+import { ProductsComponent } from './shopping/components/products/products.component';
+import { ShoppingModule } from './shopping/shopping.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     LoginComponent,
-    HomeComponent,
-    ProductsComponent,
-    CartComponent,
-    CheckoutComponent,
-    OrderSuccessComponent,
-    OrdersComponent,
-    ProductFilterComponent,
-    CartSummaryComponent,
-    ShippingFormComponent
+    HomeComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     SharedModule,
     AdminModule,
+    ShoppingModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
@@ -55,24 +41,7 @@ import { AdminModule } from './admin/admin.module';
     NgbModule.forRoot(),
     RouterModule.forRoot([
       { path: '', component: ProductsComponent },
-      { path: 'products', component: ProductsComponent },
-      { path: 'cart', component: CartComponent },
       { path: 'login', component: LoginComponent },
-      {
-        path: 'checkout',
-        component: CheckoutComponent,
-        canActivate: [AuthGuardService]
-      },
-      {
-        path: 'order-success/:id',
-        component: OrderSuccessComponent,
-        canActivate: [AuthGuardService]
-      },
-      {
-        path: 'my/orders',
-        component: OrdersComponent,
-        canActivate: [AuthGuardService]
-      },
     ])
   ],
   providers: [AdminAuthGuardService],
