@@ -19,7 +19,7 @@ export class ShippingFormComponent implements OnInit, OnDestroy {
     'NH', 'NJ', 'NM', 'NY', 'NC', 'ND', 'MP', 'OH', 'OK', 'OR', 'PW',
     'PA', 'PR', 'RI', 'SC', 'SD', 'TN', 'TX', 'UT', 'VT', 'VI', 'VA',
     'WA', 'WV', 'WI', 'WY', 'AE', 'AA', 'AP'];
-  shipping = {}
+  shipping;
   userSub: Subscription;
   userId: string;
   order: Order;

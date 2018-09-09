@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SharedModule } from 'shared/shared.module';
 
 import { HomeComponent } from './components/home/home.component';
@@ -9,7 +10,8 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 @NgModule({
   imports: [
     SharedModule,
-    RouterModule.forChild([])
+    RouterModule.forChild([]),
+    NgbModule
   ],
   declarations: [
     NavbarComponent,
